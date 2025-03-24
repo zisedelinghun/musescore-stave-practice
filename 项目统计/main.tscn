@@ -1,0 +1,88 @@
+[gd_scene load_steps=2 format=3 uid="uid://ynwgxchx603h"]
+
+[ext_resource type="Script" uid="uid://fvsnxx7bo0fg" path="res://Main.cs" id="1_mcbij"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_mcbij")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+offset_left = 3.0
+offset_top = 3.0
+offset_right = 1150.0
+offset_bottom = 645.0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainerSum" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="BoxContainerSum" type="BoxContainer" parent="MarginContainer/VBoxContainer/MarginContainerSum"]
+layout_mode = 2
+
+[node name="LabelTitle" type="Label" parent="MarginContainer/VBoxContainer/MarginContainerSum/BoxContainerSum"]
+layout_mode = 2
+text = "当前曲谱数量："
+
+[node name="LabelContent" type="Label" parent="MarginContainer/VBoxContainer/MarginContainerSum/BoxContainerSum"]
+layout_mode = 2
+text = "0"
+
+[node name="MarginContainerSearch" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 10
+
+[node name="BoxContainerInput" type="BoxContainer" parent="MarginContainer/VBoxContainer/MarginContainerSearch"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/MarginContainerSearch/BoxContainerInput"]
+layout_mode = 2
+text = "搜索："
+
+[node name="LineEdit" type="LineEdit" parent="MarginContainer/VBoxContainer/MarginContainerSearch/BoxContainerInput"]
+layout_mode = 2
+
+[node name="MarginContainerFile" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 10
+
+[node name="GridContainerFileInfo" type="GridContainer" parent="MarginContainer/VBoxContainer/MarginContainerFile"]
+layout_mode = 2
+size_flags_stretch_ratio = 0.0
+theme_override_constants/h_separation = 700
+columns = 2
+
+[node name="LabelName" type="Label" parent="MarginContainer/VBoxContainer/MarginContainerFile/GridContainerFileInfo"]
+layout_mode = 2
+text = "文件名"
+
+[node name="LabelSize" type="Label" parent="MarginContainer/VBoxContainer/MarginContainerFile/GridContainerFileInfo"]
+layout_mode = 2
+text = "大小(KB)"
+
+[node name="MarginContainerFileInfo" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_top = 10
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer/MarginContainerFileInfo"]
+layout_mode = 2
+size_flags_stretch_ratio = 20.0
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/VBoxContainer/MarginContainerFileInfo/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/h_separation = 500
+columns = 2
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+
+[connection signal="text_changed" from="MarginContainer/VBoxContainer/MarginContainerSearch/BoxContainerInput/LineEdit" to="." method="_on_line_edit_text_changed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
